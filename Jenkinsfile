@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent none
 
     environment {
 
@@ -9,13 +9,13 @@ pipeline {
     }
 
     stages {
-
+        
        stage('Sonarqube') {
-
+    agent any
     environment {
 
         scannerHome = tool 'SonarQubeScanner'
-
+    
     }
 
     steps {
