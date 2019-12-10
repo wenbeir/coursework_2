@@ -22,7 +22,8 @@ pipeline {
 
         withSonarQubeEnv('sonarqube') {
 
-            sh "${scannerHome}/bin/sonar-scanner"
+            sh "${scannerHome} /home/username/jenkins-data/sonarqube/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner"
+           
 
         }
 
