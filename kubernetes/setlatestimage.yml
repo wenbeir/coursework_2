@@ -1,0 +1,8 @@
+- name: Set Prod Image to Latest
+  hosts: azure
+  vars:
+    myResourceGroup: kubernetes
+    myVm: ansible-node
+  tasks:
+    - name: SetImage
+      command: kubectl set image deployments/devops web=docker.io/wenbeir/coursework2:latest
