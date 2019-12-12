@@ -1,0 +1,8 @@
+- name: Deploy Prod Node
+  hosts: azure
+  vars:
+    myResourceGroup: kubernetes
+    myVm: ansible-node
+  tasks:
+    - name: Deploy
+      command: kubectl create -f kubernetes/kube_deployment.yaml
