@@ -1,0 +1,33 @@
+- name: Configure Node VM
+  hosts: azure
+  user: azureuser
+  become: yes
+  vars:
+    myResourceGroup: kubernetes
+    myVM: ansible-node
+  tasks:
+  - stat:
+      path: /home/azureuser/deploy_kube.yml
+    register: result
+
+  - name: Copy deploy_kube to Node
+    copy:
+      src: ./deploy_kube.yml
+      dest: /home/azureuser/deploy_kube.yml
+    when: result.stat.exists == false
+
+  - name: Run YML
+    command: kubectl apply -f /home/azureuser/deploy_kube.yml
+
+  - stat:
+      path: /home/azureuser/kube_service.yml
+    register: result
+
+  - name: Copy kube_service.yml to Node
+    copy:
+      src: ./kube_service.yml
+      dest: /home/azureuser/kube_service.yml
+    when: result.stat.exists == false
+
+  - name: Run YML
+    command: kubectl apply -f /home/azureuser/kube_service.yml
