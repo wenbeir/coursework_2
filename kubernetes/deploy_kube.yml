@@ -2,21 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: coursework2
-  labels:
-    app: web
+  namespace: coursework2
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: web
+      app: coursework2
   template:
     metadata:
       labels:
-        app: web
+        app: coursework2
     spec:
       containers:
-      - name: web
-        image: docker.io/wenbeir/coursework2:latest
-        ports:
-        - containerPort: 8080
+        - name: coursework2
+          image: docker.io/wenbeir/coursework2:latest
 
+          ports:
+            - containerPort: 8080
